@@ -21,7 +21,10 @@ class SpreadSheet:
                 return value[1:-1]
             elif value.startswith("="):
                 if value[1:].isidentifier():
-                    return self.evaluate(value[1:])
+                    referenced_value = self.evaluate(value[1:])
+                    if referenced_value == "#Error" or referenced_value == "#Circular":
+                        return referenced_value
+                    return int(referenced_value)
                 elif value[1:].isdigit():
                     return int(value[1:])
                 elif value[1:].startswith("'") and value[1:].endswith("'"):

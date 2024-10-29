@@ -71,3 +71,8 @@ class TestSpreadSheet(TestCase):
         spreadsheet = SpreadSheet()
         spreadsheet.set("A1", "=1/0")
         self.assertEqual("#Error", spreadsheet.evaluate("A1"))
+
+    def test_arithmetic_formula_with_sum_and_multiplication(self):
+        spreadsheet = SpreadSheet()
+        spreadsheet.set("A1", "=1+3*2")
+        self.assertEqual(7, spreadsheet.evaluate("A1"))
