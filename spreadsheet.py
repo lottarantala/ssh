@@ -20,15 +20,13 @@ class SpreadSheet:
             if value.startswith("'") and value.endswith("'"):
                 return value[1:-1]
             elif value.startswith("="):
-                try:
-                    # Evaluate the expression after '='
-                    if value[1:].isdigit():
-                        return int(value[1:])
-                    elif value[1:].startswith("'") and value[1:].endswith("'"):
-                        return value[2:-1]
-                    else:
-                        return "#Error"
-                except ValueError:
+                if value[1:].isdigit():
+                    return int(value[1:])
+                elif value[1:].startswith("'") and value[1:].endswith("'"):
+                    return value[2:-1]
+                elif value[1:].isidentifier():
+                    return self.evaluate(value[1:])
+                else:
                     return "#Error"
             try:
                 return int(value)
