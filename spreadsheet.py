@@ -17,10 +17,10 @@ class SpreadSheet:
         self._evaluating.add(cell)
         try:
             value = self._cells.get(cell, '')
-            if value.isdigit():
+            try:
                 return int(value)
-            else:
-                return value
+            except ValueError:
+                return "#Error"
         finally:
             self._evaluating.remove(cell)
 
