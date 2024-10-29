@@ -13,7 +13,7 @@ class SpreadSheet:
 
     def evaluate(self, cell: str):
         if cell in self._evaluating:
-            raise ValueError("Circular dependency detected")
+            return "#Circular"
         self._evaluating.add(cell)
         try:
             value = self._cells.get(cell, '')
