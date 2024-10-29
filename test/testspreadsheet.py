@@ -56,3 +56,8 @@ class TestSpreadSheet(TestCase):
         spreadsheet.set("A1", "=B1")
         spreadsheet.set("B1", "=A1")
         self.assertEqual("#Circular", spreadsheet.evaluate("A1"))
+
+    def test_arithmetic_formula_with_valid_integer(self):
+        spreadsheet = SpreadSheet()
+        spreadsheet.set("A1", "=1+3")
+        self.assertEqual(4, spreadsheet.evaluate("A1"))
