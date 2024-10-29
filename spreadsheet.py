@@ -30,7 +30,10 @@ class SpreadSheet:
                     try:
                         # Evaluate arithmetic expressions
                         expression = value[1:]
-                        return eval(expression, {}, {})
+                        result = eval(expression, {}, {})
+                        if isinstance(result, float) and not result.is_integer():
+                            return "#Error"
+                        return int(result)
                     except:
                         return "#Error"
             try:
